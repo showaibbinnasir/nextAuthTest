@@ -1,9 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
+import { ToastWrapper } from "keep-react";
+import { AuthProvider } from "./components/Provider/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400"]
 });
 
 const geistMono = Geist_Mono({
@@ -19,8 +27,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.className}`}>
+        <NavigationBar></NavigationBar>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+        <ToastWrapper
+          richColors={true}
+          toastOptions={{
+            classNames: {
+              title: 'text-body-3 font-medium',
+              toast: 'rounded-xl shadow-large',
+              description: 'text-body-4 font-normal',
+            },
+          }}
+        />
       </body>
     </html>
   );
