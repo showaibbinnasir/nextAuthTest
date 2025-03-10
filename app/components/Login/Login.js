@@ -22,6 +22,7 @@ export default function Login() {
             })
 
             if (res.error) {
+                setIsLoading(false)
                 setError("Invalid Credentials")
                 return
             }
@@ -30,7 +31,7 @@ export default function Login() {
             toast.success("Logged in successfully")
             router.replace('dashboard')
         } catch (error) {
-            setIsLoading(false)
+            
             toast.error("Something went wrong")
         }
 
