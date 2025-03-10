@@ -59,7 +59,7 @@ import bycrypt from "bcryptjs"
     },
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: "/login",
+        signIn: "auth/login",
     },
 }
 
